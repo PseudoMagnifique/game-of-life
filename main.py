@@ -1,6 +1,6 @@
 """
 author: pseudomagnifique
 title: Game of Life
-created:
-last modified: 17/03/24
+created: 17/03/24
+last modified: 02/08/24
 """
