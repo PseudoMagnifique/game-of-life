@@ -15,3 +15,24 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
+import argparse
+from grid import Grid
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--rows", help="number of rows in the grid", type=int, default=20)
+parser.add_argument("--columns", help="number of columns in the grid", type=int, default=20)
+
+args = parser.parse_args()
+
+grid = Grid(args.rows,args.columns)
+
+# print LICENSE
+# allow the user to configure initial configuration
+# GAME
+# new_generation:
+#   apply the rules to every cell of the grid
+#   modifies a copy of the grid
+#   the copy becomes the grid
+
+# to make the "apply the rules" part faster, "unload" useless cells
