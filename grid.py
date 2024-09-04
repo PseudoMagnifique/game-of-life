@@ -23,11 +23,12 @@ class Grid:
         self.__grid = [[0 for _ in range(columns)] for _ in range(rows)]
         self.__loaded = set()
     
-    def print(self) -> None:
+    def display(self) -> None:
         """
         Prints the grid in the terminal
         """
-        pass
+        res = "\n".join([" ".join(["x" if cell else "." for cell in row]) for row in self.__grid])
+        print(res)
     
     def set(self, row: int, column: int, state: int) -> None:
         """
