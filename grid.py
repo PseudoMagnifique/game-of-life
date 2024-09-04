@@ -23,6 +23,9 @@ class Grid:
         self.__grid = [[0 for _ in range(columns)] for _ in range(rows)]
         self.__loaded = set()
     
+    def __getitem__(self, row: int) -> list[int]:
+        return self.__grid[row]
+    
     def display(self) -> None:
         """
         Prints the grid in the terminal

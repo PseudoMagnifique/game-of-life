@@ -21,4 +21,4 @@ The implementation is still under development as can not yet run properly.
 2. Launch `main.py` with `python3 path/to/main.py n m`, where `n` is the number of rows and `m` of columns of the grid. The grid is 20x20 if no $n$ and $m$ parameters are specified.
 3. Using your keyboard arrows to move from one cell to another, tap `x` to make a dead cell alive or kill a living cell.
 4. Once you're done and satisfied with the initial configuration, tap `<Enter>` and watch the game unfold.
-5. -->
+-->

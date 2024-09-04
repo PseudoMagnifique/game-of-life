@@ -16,7 +16,15 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+LICENSE = """
+Game of life Python implementation Copyright (C) 2024  pseudomagnifique
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type `show c' for details.
+"""
+
 import argparse
+import keyboard
 from grid import Grid
 
 parser = argparse.ArgumentParser()
@@ -27,12 +35,38 @@ args = parser.parse_args()
 
 grid = Grid(args.rows,args.columns)
 
-# print LICENSE
 # allow the user to configure initial configuration
-# GAME
-# new_generation:
-#   apply the rules to every cell of the grid
-#   modifies a copy of the grid
-#   the copy becomes the grid
 
-# to make the "apply the rules" part faster, "unload" useless cells
+print("""
+      Commands:
+      - Choose a cell to modify with the arrow keys
+      - Press 'x' to modify the state of the cell (alive: 1, dead: 0)
+      - Press '<Enter>' to start the game
+      """
+)
+
+start = False
+pos_i = 0
+pos_j = 0
+
+while not start:
+    key = keyboard.read_key()
+
+    if key == "right" and pos_j + 1 < args.columns:
+        pos_j += 1
+    elif key == "left" and pos_j - 1 >= 0:
+        pos_j -= 1
+    elif key == "up" and pos_i - 1 >= 0:
+        pos_i -= 1
+    elif key == "down" and pos_i + 1 < args.columns:
+        pos_i += 1
+    elif key == "x":
+        grid.set(pos_i, pos_j, int(not grid[pos_i][pos_j]))
+    elif key == "enter":
+        start = True
+    
+    if not start:
+        grid.select(pos_i, pos_j)
+
+
+# GAME
