@@ -19,7 +19,7 @@
 import argparse
 from game import Game
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(prog='Game of life', description='Play the game of life in your terminal')
 parser.add_argument("-r", "--rows", help="number of rows in the grid", type=int, default=20)
 parser.add_argument("-c", "--columns", help="number of columns in the grid", type=int, default=20)
 parser.add_argument("--zqsd", help="use the zqsd keys to move in the grid", action="store_true")
