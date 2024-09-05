@@ -28,7 +28,7 @@ class Grid:
         """
         Defines the result of using the print() function on an instance of the Grid class
         """
-        return "\n\n".join([(self.number_spaces*" ").join(["x" if cell else "." for cell in row]) for row in self.__grid])
+        return "\n\n".join([(self.number_spaces*" ").join(["█" if cell else "." for cell in row]) for row in self.__grid])
     
     def __getitem__(self, row: int) -> list[int]:
         try:
