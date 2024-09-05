@@ -20,8 +20,8 @@ import argparse
 from game import Game
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--rows", help="number of rows in the grid", type=int, default=20)
-parser.add_argument("--columns", help="number of columns in the grid", type=int, default=20)
+parser.add_argument("-r", "--rows", help="number of rows in the grid", type=int, default=20)
+parser.add_argument("-c", "--columns", help="number of columns in the grid", type=int, default=20)
 parser.add_argument("--zqsd", help="use the zqsd keys to move in the grid", action="store_true")
 
 args = parser.parse_args()

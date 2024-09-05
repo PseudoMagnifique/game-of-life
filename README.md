@@ -13,12 +13,11 @@ The neighbours of a cell are the 8 cells around it.
 
 ## Usage
 
-The implementation is still under development as can not yet run properly.
-
-<!--
 1. Clone the repo
 `git clone https://github.com/PseudoMagnifique/game-of-life`
-2. Launch `main.py` with `python3 path/to/main.py n m`, where `n` is the number of rows and `m` of columns of the grid. The grid is 20x20 if no $n$ and $m$ parameters are specified.
-3. Using your keyboard arrows to move from one cell to another, tap `x` to make a dead cell alive or kill a living cell.
+2. Launch `main.py` with `python3 path/to/main.py --rows n --columns m`, where `n` is the number of rows and `m` of columns of the grid. The grid is 20x20 if no `n` and `m` parameters are specified.
+N.B.:
+- The `--rows n` flag is optional and can be replaced with `-r n`.
+- The `--columns m` flag is optional and can be replaced with `-c m`.
+3. Use the wasd keys on your keyboard to move from one cell to another, tap `x` to make a dead cell alive or kill a living cell. If you want to use the zqsd keys instead, use the `--zqsd` flag when launching the `main.py` file.
 4. Once you're done and satisfied with the initial configuration, tap `<Enter>` and watch the game unfold.
--->
