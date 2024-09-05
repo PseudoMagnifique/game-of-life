@@ -31,12 +31,14 @@ game = Game(args)
 game.license()
 game.commands()
 
-choice = input("Press '<Enter>' to start ")
+choice = input("Press '<Enter>' to start: ")
 
-if choice == "show w":
-    pass
-elif choice == "show c":
-    pass
+while choice != "":
+    if choice == "show w":
+        print("https://github.com/PseudoMagnifique/game-of-life/tree/main?tab=GPL-3.0-1-ov-file#15-disclaimer-of-warranty")
+    elif choice == "show c":
+        print("https://github.com/PseudoMagnifique/game-of-life/blob/main/LICENSE.md#5-conveying-modified-source-versions")
+    choice = input("Press '<Enter>' to start: ")
 
 game.config()
 game.start()
