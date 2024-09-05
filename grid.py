@@ -17,21 +17,50 @@
 """
 
 class Grid:
-    def __init__(self, rows: int, columns: int) -> None:
+    def __init__(self, rows: int, columns: int, number_spaces:  int = 4) -> None:
         self.__rows = rows
         self.__columns = columns
         self.__grid = [[0 for _ in range(columns)] for _ in range(rows)]
         self.__loaded = set()
+        self.number_spaces = number_spaces  # number of spaces used in the __str__ method
+    
+    def __str__(self) -> str:
+        """
+        Defines the result of using the print() function on an instance of the Grid class
+        """
+        return "\n\n".join([(self.number_spaces*" ").join(["x" if cell else "." for cell in row]) for row in self.__grid])
     
     def __getitem__(self, row: int) -> list[int]:
-        return self.__grid[row]
+        try:
+            res = self.__grid[row]
+        except TypeError:
+            raise(TypeError(f"int expected, but {type(row).__name__} given"))
+        except IndexError:
+            raise(IndexError(f"An integer between 0 and {self.__rows-1} was expected, but {row} was given"))
+        else:
+            return res
     
-    def display(self) -> None:
+    def select(self, i: int, j: int) -> None:
         """
-        Prints the grid in the terminal
+        Prints the grid in the terminal, with the (i,j) cell selected
+
+        :param int i: row of the cell
+        :param int j: column of the cell
         """
-        res = "\n".join([" ".join(["x" if cell else "." for cell in row]) for row in self.__grid])
-        print(res)
+        try:
+            self.__grid[i][j]
+        except TypeError:
+            raise(TypeError(f"Both parameters i and j are expected to be int, but types {type(i).__name__} (i) and {type(j).__name__} (j) were given"))
+        except IndexError:
+            raise(IndexError(f"The i parameter must be between 0 and {self.__rows-1}, and the j parameter between 0 and {self.__columns-1}. " \
+                             f"Instead, {i} (i) and {j} (j) were given."))
+        rows = self.__str__().split("\n\n")
+        for k in range(self.__rows):
+            print(rows[k])
+            if k == i:
+                print(j*(self.number_spaces+1) * " " + "_" + (self.__columns-1-j)*(self.number_spaces+1) * " ")
+            elif k != self.__rows - 1:
+                print()
     
     def set(self, row: int, column: int, state: int) -> None:
         """
@@ -145,8 +174,11 @@ class Grid:
         """
         New iteration of the rules on the current grid
         """
-        next_generation = {}
+        next_generation = {0: [], 1: []}
         for cell in self.__loaded:
-            next_generation[cell] = self.apply_rules(*cell, self.alive_neighbours(*cell))
-        for cell in next_generation:
-            self.set(*cell, next_generation[cell])
+            cell_new_state = self.apply_rules(*cell, self.alive_neighbours(*cell))
+            next_generation[cell_new_state].append(cell)
+        for cell in next_generation[0]:
+            self.set(*cell, 0)
+        for cell in next_generation[1]:
+            self.set(*cell, 1)
